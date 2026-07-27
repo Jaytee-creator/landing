@@ -1,0 +1,303 @@
+/* =====================================================
+   DESIGN TOKENS
+   All colors, fonts, and spacing live here so the whole
+   page can be restyled later by changing values in one place.
+===================================================== */
+:root {
+  /* Colors */
+  --color-bg: #F7F5EF;          /* soft paper background */
+  --color-ink: #1D201C;         /* main text, near-black but warm */
+  --color-ink-muted: #5B5F55;   /* secondary/body text */
+  --color-accent: #1F6F5C;      /* deep teal — the one accent color */
+  --color-accent-soft: #DCE8E2; /* pale tint of the accent, for tags */
+  --color-border: #DEDACD;      /* hairline dividers */
+
+  /* Fonts */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Spacing scale — reused throughout instead of one-off values */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.75rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+
+  --content-width: 720px;
+  --transition-fast: 0.15s ease;
+}
+
+/* =====================================================
+   RESET & BASE STYLES
+===================================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  margin: 0 0 var(--space-sm) 0;
+  line-height: 1.15;
+}
+
+p {
+  margin: 0 0 var(--space-sm) 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Keep a visible focus ring for keyboard users */
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* =====================================================
+   HEADER / NAV
+===================================================== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-sm);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.accent-dot {
+  color: var(--color-accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+  transition: color var(--transition-fast);
+}
+
+.nav-links a:hover {
+  color: var(--color-accent);
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+.hero {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-sm) var(--space-lg);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.hero h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.hero-subtext {
+  max-width: 46ch;
+  color: var(--color-ink-muted);
+  font-size: 1.05rem;
+}
+
+/* Small terminal-style line under the intro — a nod to being a developer */
+.status-line {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  margin: var(--space-md) 0;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background-color: var(--color-accent);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-top: var(--space-md);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.btn-primary:hover {
+  background-color: #17564A; /* darker teal on hover */
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* =====================================================
+   ABOUT SECTION
+===================================================== */
+.about {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.about p {
+  color: var(--color-ink-muted);
+  max-width: 60ch;
+}
+
+/* =====================================================
+   WORK / SKILLS SECTION
+===================================================== */
+.work {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 var(--space-sm) var(--space-lg);
+}
+
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+}
+
+.tag-list li {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.site-footer {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.footer-links a {
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+/* =====================================================
+   RESPONSIVE — small screens
+===================================================== */
+@media (max-width: 480px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* =====================================================
+   ACCESSIBILITY — respect reduced motion preference
+===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+  * {
+    transition: none !important;
+  }
+}
